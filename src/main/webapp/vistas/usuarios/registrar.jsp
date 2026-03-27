@@ -46,14 +46,43 @@
         }
         .btn:hover { background-color: #7b5ea7; }
         .link { color: #9c7cc4; text-decoration: none; }
-        .error { color: red; font-size: 0.9em; }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            background-color: #ffe0e0;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .exito {
+            color: #5a7a5a;
+            font-size: 1em;
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #c8e6c9;
+        }
+        .exito span {
+            font-size: 1.5em;
+        }
     </style>
 </head>
 <body>
     <div class="contenedor">
         <h2>Crear cuenta</h2>
         <p>Venus Nails Spa</p>
-        <form action="../../UsuarioServlet" method="post">
+
+        <% if (request.getAttribute("exito") != null) { %>
+            <div class="exito">
+                <span>?</span><br>
+                ¡Registro exitoso! Bienvenida a Venus Nails Spa ?
+                <br><br>
+                <a href="${pageContext.request.contextPath}/vistas/login.jsp" class="link">Iniciar sesión ?</a>
+            </div>
+        <% } else { %>
+
+        <form action="${pageContext.request.contextPath}/UsuarioServlet" method="post">
             <input type="text" name="nombre" placeholder="Nombre" required><br>
             <input type="text" name="apellido" placeholder="Apellido" required><br>
             <input type="email" name="correo" placeholder="Correo electrónico" required><br>
@@ -66,12 +95,15 @@
             </select><br>
             <button type="submit" class="btn">Registrarse</button>
         </form>
-        <br>
+
         <% if (request.getAttribute("error") != null) { %>
-            <p class="error"><%= request.getAttribute("error") %></p>
+            <p class="error">? <%= request.getAttribute("error") %></p>
         <% } %>
-        <p>¿Ya tienes cuenta? <a href="../login.jsp" class="link">Inicia sesión</a></p>
-        <a href="../../index.jsp" class="link">← Volver</a>
+
+        <p>¿Ya tienes cuenta? <a href="${pageContext.request.contextPath}/vistas/login.jsp" class="link">Inicia sesión</a></p>
+        <a href="${pageContext.request.contextPath}/index.jsp" class="link">? Volver</a>
+
+        <% } %>
     </div>
 </body>
 </html>

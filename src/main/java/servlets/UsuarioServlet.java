@@ -66,7 +66,9 @@ public class UsuarioServlet extends HttpServlet {
             ps.setString(5, contrasena);
             ps.setString(6, rol);
             ps.executeUpdate();
-            response.sendRedirect("UsuarioServlet");
+            request.setAttribute("exito", true);
+            request.getRequestDispatcher("/vistas/usuarios/registrar.jsp")
+                   .forward(request, response);
         } catch (SQLException e) {
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/vistas/usuarios/registrar.jsp")

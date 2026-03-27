@@ -1,5 +1,4 @@
 package servlets;
-
 import conexion.conexion;
 import java.io.*;
 import java.sql.*;
@@ -16,7 +15,6 @@ public class LoginServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String correo     = request.getParameter("correo");
         String contrasena = request.getParameter("contrasena");
-
         try {
             Connection cn = new conexion().conectar();
             String sql = "SELECT * FROM usuario WHERE correo = ? AND contrasena = ?";
@@ -24,32 +22,25 @@ public class LoginServlet extends HttpServlet {
             ps.setString(1, correo);
             ps.setString(2, contrasena);
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
-                // Login exitoso - guardar datos en sesión
                 HttpSession session = request.getSession();
                 session.setAttribute("idUsuario", rs.getInt("id_usuario"));
                 session.setAttribute("nombre", rs.getString("nombre"));
                 session.setAttribute("rol", rs.getString("rol"));
 
-                // Redirigir según rol
-                String rol = rs.getString("rol");
+              String rol = rs.getString("rol").toLowerCase();
                 if (rol.equals("admin")) {
-                    response.sendRedirect("../vistas/admin/panel.jsp");
+                    response.sendRedirect(request.getContextPath() + "/vistas/admin/panel.jsp");
                 } else if (rol.equals("manicurista")) {
-                    response.sendRedirect("../vistas/manicurista/panel.jsp");
+                    response.sendRedirect(request.getContextPath() + "/vistas/manicurista/panel.jsp");
                 } else {
-                    response.sendRedirect("../vistas/cliente/panel.jsp");
+                    response.sendRedirect(request.getContextPath() + "/vistas/cliente/panel.jsp");
                 }
             } else {
-                request.setAttribute("error", "Correo o contraseña incorrectos");
-                request.getRequestDispatcher("/vistas/login.jsp")
-                       .forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/vistas/login.jsp?error=1");
             }
         } catch (SQLException e) {
-            request.setAttribute("error", "Error: " + e.getMessage());
-            request.getRequestDispatcher("/vistas/login.jsp")
-                   .forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/vistas/login.jsp?error=2");
         }
     }
 }
