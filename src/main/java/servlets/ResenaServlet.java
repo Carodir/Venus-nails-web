@@ -24,7 +24,7 @@ public class ResenaServlet extends HttpServlet {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Resena r = new Resena();
-                r.setIdResena(rs.getInt("id_resena"));
+                r.setIdResena(rs.getInt("id_reseña"));
                 r.setIdUsuario(rs.getInt("id_usuario"));
                 r.setComentario(rs.getString("comentario"));
                 r.setCalificacion(rs.getInt("calificacion"));
