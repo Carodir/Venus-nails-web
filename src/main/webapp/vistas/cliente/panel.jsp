@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     if (session.getAttribute("rol") == null || !session.getAttribute("rol").equals("cliente")) {
-        response.sendRedirect("../../vistas/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/vistas/login.jsp");
         return;
     }
 %>
@@ -26,13 +26,8 @@
             align-items: center;
         }
         .navbar h2 { margin: 0; }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-        }
-        .contenido {
-            padding: 30px;
-        }
+        .navbar a { color: white; text-decoration: none; }
+        .contenido { padding: 30px; }
         h3 { color: #7b5ea7; }
         .grid {
             display: grid;
@@ -57,10 +52,7 @@
             font-size: 0.85em;
             font-weight: bold;
         }
-        .btn-ver {
-            background-color: #9c7cc4;
-            color: white;
-        }
+        .btn-ver { background-color: #9c7cc4; color: white; }
         .btn-agregar {
             background-color: white;
             color: #9c7cc4;
@@ -73,28 +65,28 @@
     <div class="navbar">
         <h2>💅 Venus Nails</h2>
         <span>Hola, <%= session.getAttribute("nombre") %> |
-        <a href="../../LogoutServlet">Cerrar sesión</a></span>
+        <a href="${pageContext.request.contextPath}/LogoutServlet">Cerrar sesión</a></span>
     </div>
     <div class="contenido">
         <h3>¿Qué deseas hacer hoy?</h3>
         <div class="grid">
             <div class="card">
-                <h4>Mis Citas</h4>
-                <a href="../../CitaServlet" class="btn btn-ver">Ver mis citas</a>
-                <a href="../citas/agendar.jsp" class="btn btn-agregar">Agendar cita</a>
+                <h4>💅 Mis Citas</h4>
+                <a href="${pageContext.request.contextPath}/CitaServlet" class="btn btn-ver">Ver mis citas</a>
+                <a href="${pageContext.request.contextPath}/vistas/citas/agendar.jsp" class="btn btn-agregar">Agendar cita</a>
             </div>
             <div class="card">
-                <h4>Servicios</h4>
-                <a href="../../ServicioServlet" class="btn btn-ver">Ver servicios</a>
+                <h4>🌸 Servicios</h4>
+                <a href="${pageContext.request.contextPath}/ServicioServlet" class="btn btn-ver">Ver servicios</a>
             </div>
             <div class="card">
-                <h4>Mis Reseñas</h4>
-                <a href="../../ResenaServlet" class="btn btn-ver">Ver reseñas</a>
-                <a href="../resenas/agregar.jsp" class="btn btn-agregar">Agregar reseña</a>
+                <h4>⭐ Mis Reseñas</h4>
+                <a href="${pageContext.request.contextPath}/ResenaServlet" class="btn btn-ver">Ver reseñas</a>
+                <a href="${pageContext.request.contextPath}/vistas/resenas/agregar.jsp" class="btn btn-agregar">Agregar reseña</a>
             </div>
             <div class="card">
-                <h4>Mis Pagos</h4>
-                <a href="../../PagoServlet" class="btn btn-ver">Ver pagos</a>
+                <h4>💳 Mis Pagos</h4>
+                <a href="${pageContext.request.contextPath}/PagoServlet" class="btn btn-ver">Ver pagos</a>
             </div>
         </div>
     </div>

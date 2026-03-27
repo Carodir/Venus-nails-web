@@ -59,7 +59,7 @@ public class HorarioServlet extends HttpServlet {
             ps.setString(3, horaInicio);
             ps.setString(4, horaFin);
             ps.executeUpdate();
-            response.sendRedirect("HorarioServlet");
+            response.sendRedirect(request.getContextPath() + "/HorarioServlet");
         } catch (SQLException e) {
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/vistas/horarios/agregar.jsp")

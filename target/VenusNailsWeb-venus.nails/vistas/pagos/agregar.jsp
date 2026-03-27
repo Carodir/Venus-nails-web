@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Agregar Reseña - Venus Nails</title>
+    <title>Agregar Pago - Venus Nails</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(123,94,167,0.15);
-            width: 420px;
+            width: 400px;
         }
         h2 {
             color: #7b5ea7;
@@ -31,7 +31,7 @@
             font-weight: bold;
             font-size: 14px;
         }
-        input, select, textarea {
+        input, select {
             width: 100%;
             padding: 10px;
             margin: 6px 0 16px 0;
@@ -40,7 +40,6 @@
             box-sizing: border-box;
             font-size: 14px;
         }
-        textarea { height: 100px; resize: vertical; }
         input[type="submit"] {
             background-color: #7b5ea7;
             color: white;
@@ -51,22 +50,14 @@
             font-size: 16px;
             cursor: pointer;
         }
-        input[type="submit"]:hover { background-color: #9c7cc4; }
-        .estrellas {
-            display: flex;
-            gap: 8px;
-            margin: 6px 0 16px 0;
+        input[type="submit"]:hover {
+            background-color: #9c7cc4;
         }
-        .estrellas label {
-            font-size: 28px;
-            cursor: pointer;
-            color: #ccc;
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
         }
-        .estrellas input[type="radio"] { display: none; }
-        .estrellas input[type="radio"]:checked ~ label { color: #ccc; }
-        .estrellas label:hover,
-        .estrellas label:hover ~ label { color: #f5a623; }
-        .error { color: red; text-align: center; margin-top: 10px; }
         .volver {
             display: block;
             text-align: center;
@@ -78,36 +69,36 @@
 </head>
 <body>
     <div class="card">
-        <h2>⭐ Agregar Reseña</h2>
-        <form action="${pageContext.request.contextPath}/ResenaServlet" method="post">
+        <h2>💳 Agregar Pago</h2>
+        <form action="${pageContext.request.contextPath}/PagoServlet" method="post">
 
-            <label>ID Usuario:</label>
-            <input type="number" name="idUsuario" required>
-
-            <label>Comentario:</label>
-            <textarea name="comentario" required></textarea>
-
-            <label>Calificación:</label>
-            <select name="calificacion" required>
-                <option value="">-- Selecciona --</option>
-                <option value="1">⭐ 1 - Muy malo</option>
-                <option value="2">⭐⭐ 2 - Malo</option>
-                <option value="3">⭐⭐⭐ 3 - Regular</option>
-                <option value="4">⭐⭐⭐⭐ 4 - Bueno</option>
-                <option value="5">⭐⭐⭐⭐⭐ 5 - Excelente</option>
-            </select>
+            <label>ID Cita:</label>
+            <input type="number" name="idCita" required>
 
             <label>Fecha:</label>
             <input type="date" name="fecha" required>
 
-            <input type="submit" value="Agregar Reseña">
+            <label>Monto:</label>
+            <input type="number" step="0.01" name="monto" min="0" required>
+
+            <label>Método de Pago:</label>
+            <select name="metodo" required>
+                <option value="">-- Selecciona un método --</option>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Tarjeta">Tarjeta</option>
+                <option value="Transferencia">Transferencia</option>
+                <option value="Nequi">Nequi</option>
+                <option value="Daviplata">Daviplata</option>
+            </select>
+
+            <input type="submit" value="Registrar Pago">
         </form>
 
         <% if (request.getAttribute("error") != null) { %>
             <p class="error">Error: <%= request.getAttribute("error") %></p>
         <% } %>
 
-        <a href="${pageContext.request.contextPath}/ResenaServlet" class="volver">← Ver todas las reseñas</a>
+        <a href="${pageContext.request.contextPath}/PagoServlet" class="volver">← Ver todos los pagos</a>
     </div>
 </body>
 </html>

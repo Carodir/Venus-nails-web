@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     if (session.getAttribute("rol") == null || !session.getAttribute("rol").equals("manicurista")) {
-        response.sendRedirect("../../vistas/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/vistas/login.jsp");
         return;
     }
 %>
@@ -26,13 +26,8 @@
             align-items: center;
         }
         .navbar h2 { margin: 0; }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-        }
-        .contenido {
-            padding: 30px;
-        }
+        .navbar a { color: white; text-decoration: none; }
+        .contenido { padding: 30px; }
         h3 { color: #7b5ea7; }
         .grid {
             display: grid;
@@ -57,10 +52,7 @@
             font-size: 0.85em;
             font-weight: bold;
         }
-        .btn-ver {
-            background-color: #b39ddb;
-            color: white;
-        }
+        .btn-ver { background-color: #b39ddb; color: white; }
         .btn-agregar {
             background-color: white;
             color: #b39ddb;
@@ -73,19 +65,19 @@
     <div class="navbar">
         <h2>💅 Venus Nails</h2>
         <span>Hola, <%= session.getAttribute("nombre") %> |
-        <a href="../../LogoutServlet">Cerrar sesión</a></span>
+        <a href="${pageContext.request.contextPath}/LogoutServlet">Cerrar sesión</a></span>
     </div>
     <div class="contenido">
         <h3>Mi Panel</h3>
         <div class="grid">
             <div class="card">
-                <h4>Mis Citas</h4>
-                <a href="../../CitaServlet" class="btn btn-ver">Ver citas</a>
+                <h4>💅 Mis Citas</h4>
+                <a href="${pageContext.request.contextPath}/CitaServlet" class="btn btn-ver">Ver citas</a>
             </div>
             <div class="card">
-                <h4>Mi Horario</h4>
-                <a href="../../HorarioServlet" class="btn btn-ver">Ver horario</a>
-                <a href="../horarios/agregar.jsp" class="btn btn-agregar">Agregar horario</a>
+                <h4>🗓️ Mi Horario</h4>
+                <a href="${pageContext.request.contextPath}/HorarioServlet" class="btn btn-ver">Ver horario</a>
+                <a href="${pageContext.request.contextPath}/vistas/horarios/agregar.jsp" class="btn btn-agregar">Agregar horario</a>
             </div>
         </div>
     </div>

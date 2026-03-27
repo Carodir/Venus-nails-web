@@ -59,7 +59,7 @@ public class PagoServlet extends HttpServlet {
             ps.setDouble(3, monto);
             ps.setString(4, metodo);
             ps.executeUpdate();
-            response.sendRedirect("PagoServlet");
+            response.sendRedirect(request.getContextPath() + "/PagoServlet");
         } catch (SQLException e) {
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/vistas/pagos/agregar.jsp")

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     if (session.getAttribute("rol") == null || !session.getAttribute("rol").equals("admin")) {
-        response.sendRedirect("../../vistas/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/vistas/login.jsp");
         return;
     }
 %>
@@ -31,9 +31,7 @@
             text-decoration: none;
             font-size: 0.9em;
         }
-        .contenido {
-            padding: 30px;
-        }
+        .contenido { padding: 30px; }
         h3 { color: #7b5ea7; }
         .grid {
             display: grid;
@@ -74,40 +72,40 @@
     <div class="navbar">
         <h2>💅 Venus Nails - Panel Admin</h2>
         <span>Bienvenido, <%= session.getAttribute("nombre") %> |
-        <a href="../../LogoutServlet">Cerrar sesión</a></span>
+        <a href="${pageContext.request.contextPath}/LogoutServlet">Cerrar sesión</a></span>
     </div>
     <div class="contenido">
         <h3>Panel de Administración</h3>
         <div class="grid">
             <div class="card">
-                <h4>Usuarios</h4>
-                <a href="../../UsuarioServlet" class="btn btn-ver">Ver</a>
-                <a href="../usuarios/registrar.jsp" class="btn btn-agregar">Agregar</a>
+                <h4>👤 Usuarios</h4>
+                <a href="${pageContext.request.contextPath}/UsuarioServlet" class="btn btn-ver">Ver</a>
+                <a href="${pageContext.request.contextPath}/vistas/usuarios/registrar.jsp" class="btn btn-agregar">Agregar</a>
             </div>
             <div class="card">
-                <h4>Citas</h4>
-                <a href="../../CitaServlet" class="btn btn-ver">Ver</a>
-                <a href="../citas/agendar.jsp" class="btn btn-agregar">Agendar</a>
+                <h4>💅 Citas</h4>
+                <a href="${pageContext.request.contextPath}/CitaServlet" class="btn btn-ver">Ver</a>
+                <a href="${pageContext.request.contextPath}/vistas/citas/agendar.jsp" class="btn btn-agregar">Agendar</a>
             </div>
             <div class="card">
-                <h4>Servicios</h4>
-                <a href="../../ServicioServlet" class="btn btn-ver">Ver</a>
-                <a href="../servicios/agregar.jsp" class="btn btn-agregar">Agregar</a>
+                <h4>🌸 Servicios</h4>
+                <a href="${pageContext.request.contextPath}/ServicioServlet" class="btn btn-ver">Ver</a>
+                <a href="${pageContext.request.contextPath}/vistas/servicios/agregar.jsp" class="btn btn-agregar">Agregar</a>
             </div>
             <div class="card">
-                <h4>Pagos</h4>
-                <a href="../../PagoServlet" class="btn btn-ver">Ver</a>
-                <a href="../pagos/agregar.jsp" class="btn btn-agregar">Registrar</a>
+                <h4>💳 Pagos</h4>
+                <a href="${pageContext.request.contextPath}/PagoServlet" class="btn btn-ver">Ver</a>
+                <a href="${pageContext.request.contextPath}/vistas/pagos/agregar.jsp" class="btn btn-agregar">Registrar</a>
             </div>
             <div class="card">
-                <h4>Reseñas</h4>
-                <a href="../../ResenaServlet" class="btn btn-ver">Ver</a>
-                <a href="../resenas/agregar.jsp" class="btn btn-agregar">Agregar</a>
+                <h4>⭐ Reseñas</h4>
+                <a href="${pageContext.request.contextPath}/ResenaServlet" class="btn btn-ver">Ver</a>
+                <a href="${pageContext.request.contextPath}/vistas/resenas/agregar.jsp" class="btn btn-agregar">Agregar</a>
             </div>
             <div class="card">
-                <h4>Horarios</h4>
-                <a href="../../HorarioServlet" class="btn btn-ver">Ver</a>
-                <a href="../horarios/agregar.jsp" class="btn btn-agregar">Agregar</a>
+                <h4>🗓️ Horarios</h4>
+                <a href="${pageContext.request.contextPath}/HorarioServlet" class="btn btn-ver">Ver</a>
+                <a href="${pageContext.request.contextPath}/vistas/horarios/agregar.jsp" class="btn btn-agregar">Agregar</a>
             </div>
         </div>
     </div>

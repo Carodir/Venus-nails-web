@@ -59,7 +59,7 @@ public class ResenaServlet extends HttpServlet {
             ps.setInt(3, calificacion);
             ps.setString(4, fecha);
             ps.executeUpdate();
-            response.sendRedirect("ResenaServlet");
+            response.sendRedirect(request.getContextPath() + "/ResenaServlet");
         } catch (SQLException e) {
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/vistas/resenas/agregar.jsp")

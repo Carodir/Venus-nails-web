@@ -63,46 +63,40 @@
             margin: 10px 0;
             border: 1px solid #c8e6c9;
         }
-        .exito span {
-            font-size: 1.5em;
-        }
     </style>
 </head>
 <body>
     <div class="contenedor">
-        <h2>Crear cuenta</h2>
+        <h2>🌸 Crear cuenta</h2>
         <p>Venus Nails Spa</p>
 
         <% if (request.getAttribute("exito") != null) { %>
             <div class="exito">
-                <span>?</span><br>
-                ¡Registro exitoso! Bienvenida a Venus Nails Spa ?
+                ✅ ¡Registro exitoso! Bienvenida a Venus Nails Spa 💅
                 <br><br>
-                <a href="${pageContext.request.contextPath}/vistas/login.jsp" class="link">Iniciar sesión ?</a>
+                <a href="${pageContext.request.contextPath}/vistas/login.jsp" class="link">Iniciar sesión →</a>
             </div>
         <% } else { %>
+            <form action="${pageContext.request.contextPath}/UsuarioServlet" method="post">
+                <input type="text" name="nombre" placeholder="Nombre" required><br>
+                <input type="text" name="apellido" placeholder="Apellido" required><br>
+                <input type="email" name="correo" placeholder="Correo electrónico" required><br>
+                <input type="text" name="telefono" placeholder="Teléfono" required><br>
+                <input type="password" name="contrasena" placeholder="Contraseña" required><br>
+                <select name="rol">
+                    <option value="cliente">Cliente</option>
+                    <option value="manicurista">Manicurista</option>
+                    <option value="admin">Admin</option>
+                </select><br>
+                <button type="submit" class="btn">Registrarse</button>
+            </form>
 
-        <form action="${pageContext.request.contextPath}/UsuarioServlet" method="post">
-            <input type="text" name="nombre" placeholder="Nombre" required><br>
-            <input type="text" name="apellido" placeholder="Apellido" required><br>
-            <input type="email" name="correo" placeholder="Correo electrónico" required><br>
-            <input type="text" name="telefono" placeholder="Teléfono" required><br>
-            <input type="password" name="contrasena" placeholder="Contraseña" required><br>
-            <select name="rol">
-                <option value="cliente">Cliente</option>
-                <option value="manicurista">Manicurista</option>
-                <option value="admin">Admin</option>
-            </select><br>
-            <button type="submit" class="btn">Registrarse</button>
-        </form>
+            <% if (request.getAttribute("error") != null) { %>
+                <p class="error">⚠️ <%= request.getAttribute("error") %></p>
+            <% } %>
 
-        <% if (request.getAttribute("error") != null) { %>
-            <p class="error">? <%= request.getAttribute("error") %></p>
-        <% } %>
-
-        <p>¿Ya tienes cuenta? <a href="${pageContext.request.contextPath}/vistas/login.jsp" class="link">Inicia sesión</a></p>
-        <a href="${pageContext.request.contextPath}/index.jsp" class="link">? Volver</a>
-
+            <p>¿Ya tienes cuenta? <a href="${pageContext.request.contextPath}/vistas/login.jsp" class="link">Inicia sesión</a></p>
+            <a href="${pageContext.request.contextPath}/index.jsp" class="link">← Volver</a>
         <% } %>
     </div>
 </body>

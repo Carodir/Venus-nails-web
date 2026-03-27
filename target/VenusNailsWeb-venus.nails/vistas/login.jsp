@@ -57,7 +57,7 @@
 </head>
 <body>
     <div class="contenedor">
-        <h2>Iniciar Sesión</h2>
+        <h2>💅 Iniciar Sesión</h2>
         <p style="color:#9e9e9e">Venus Nails Spa</p>
         <form action="<%= request.getContextPath() %>/LoginServlet" method="post">
             <input type="email" name="correo" placeholder="Correo electrónico" required><br>
