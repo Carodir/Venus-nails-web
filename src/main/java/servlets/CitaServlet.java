@@ -62,7 +62,11 @@ public class CitaServlet extends HttpServlet {
             PreparedStatement psDuracion = cn.prepareStatement(sqlDuracion);
             psDuracion.setInt(1, idServicio);
             ResultSet rs = psDuracion.executeQuery();
-            rs.next();
+            if (!rs.next()) {
+            request.setAttribute("error", "Servicio no encontrado");
+            request.getRequestDispatcher("/vistas/citas/agendar.jsp").forward(request, response);
+            return;
+}
 
             // Calcular hora fin
             String sqlHoraFin = "SELECT ADDTIME(?, ?) AS hora_fin";

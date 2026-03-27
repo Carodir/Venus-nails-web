@@ -1,6 +1,7 @@
 modelo\Pago.class
 servlets\PagoServlet.class
 modelo\Servicio.class
+servlets\ServicioServlet.class
 servlets\LoginServlet.class
 venus\nails\venusnailsweb\JakartaRestConfiguration.class
 modelo\Cita.class

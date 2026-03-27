@@ -31,7 +31,7 @@ public class CancelarCitaServlet extends HttpServlet {
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setInt(1, idCita);
             ps.executeUpdate();
-            response.sendRedirect("CitaServlet");
+            response.sendRedirect(request.getContextPath() + "/CitaServlet");
         } catch (SQLException e) {
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/vistas/citas/cancelar.jsp")
